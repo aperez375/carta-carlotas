@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bar Los Carlotas - Carta Digital &bull; Desde 1986</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --tavern-bg: #110905;
+      --tavern-wood: #1e100a;
+      --gold-accent: #d97706;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #110905;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(217, 119, 6, 0.22), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 60%, rgba(180, 83, 9, 0.10), transparent 80%),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0px, rgba(0, 0, 0, 0.25) 2px, transparent 2px, transparent 6px),
+        linear-gradient(to bottom, #140b07 0%, #1a0f09 30%, #120a06 70%, #0d0604 100%);
+      background-attachment: fixed;
+      -webkit-tap-highlight-color: transparent;
+      color: #f5eedf;
+    }
+    .font-carlotas {
+      font-family: 'Cinzel', Georgia, serif;
+    }
+    .dish-card {
+      background: linear-gradient(160deg, rgba(38, 22, 15, 0.85) 0%, rgba(26, 14, 9, 0.92) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(217, 119, 6, 0.24);
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(251, 191, 36, 0.12);
+    }
+    .dish-card:hover {
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 6px 22px -1px rgba(217, 119, 6, 0.22), inset 0 1px 0 rgba(251, 191, 36, 0.25);
+    }
+    .nav-box {
+      background: linear-gradient(135deg, rgba(42, 24, 16, 0.95) 0%, rgba(24, 13, 8, 0.98) 100%);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 8px 25px -4px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(251, 191, 36, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-24 antialiased selection:bg-amber-600 selection:text-white">
+
+  <!-- CABECERA -->
+  <header class="relative bg-gradient-to-b from-black via-[#23120b] to-[#160b06] text-white overflow-hidden shadow-2xl border-b-2 border-amber-600/50">
+    <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#f59e0b_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+    <div class="absolute -top-28 left-1/2 -translate-x-1/2 w-[34rem] h-[34rem] bg-gradient-to-b from-amber-500/25 to-amber-700/0 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-2xl mx-auto px-4 pt-3 flex justify-end relative z-20">
+      <div class="relative">
+        <button onclick="toggleLangDropdown()" id="langBtn" 
+                class="bg-black/60 hover:bg-black/80 border border-amber-500/50 text-amber-200 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-2 shadow-md transition-all active:scale-95">
+          <span id="langFlag">🇪🇸</span>
+          <span id="langLabel">Español</span>
+          <i class="fa-solid fa-chevron-down text-[10px] text-amber-400"></i>
+        </button>
+        <div id="langMenu" class="hidden absolute right-0 top-full mt-1.5 bg-[#20110a] border border-amber-500/60 rounded-xl shadow-2xl py-1 z-50 w-32 text-xs divide-y divide-amber-900/40">
+          <button onclick="changeLanguage('es')" class="w-full px-3 py-2 text-left flex items-center gap-2 hover:bg-amber-800/40 text-amber-100 font-medium">
+            <span>🇪🇸</span> Español
+          </button>
+          <button onclick="changeLanguage('en')" class="w-full px-3 py-2 text-left flex items-center gap-2 hover:bg-amber-800/40 text-amber-100 font-medium">
+            <span>🇬🇧</span> English
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-5 pt-3 pb-7 text-center relative z-10">
+      <div class="inline-block relative">
+        <div class="absolute -inset-3 bg-amber-500/20 rounded-full blur-xl"></div>
+        <img src="logo.png" alt="Logotipo Oficial Bar Los Carlotas" 
+             class="w-36 sm:w-44 h-auto mx-auto relative drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] transition-transform duration-300">
+      </div>
+
+      <div class="flex items-center justify-center gap-3 mt-4 mb-1.5">
+        <span class="h-[1px] w-14 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></span>
+        <i class="fa-solid fa-wheat-awn text-amber-400 text-xs"></i>
+        <span class="text-amber-300/90 text-[11px] tracking-[0.3em] font-carlotas uppercase font-bold" id="headerTagline">Tradición &bull; Desde 1986</span>
+        <i class="fa-solid fa-wheat-awn text-amber-400 text-xs"></i>
+        <span class="h-[1px] w-14 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></span>
+      </div>
+
+      <p class="text-amber-200/80 text-xs sm:text-sm font-medium tracking-wide" id="headerSubtitle">
+        Tapas &bull; Raciones &bull; Brasas &bull; Arroces &bull; Postres
+      </p>
+    </div>
+  </header>
+
+  <!-- SELECTOR DESPLEGABLE -->
+  <nav class="max-w-2xl mx-auto px-4 mt-5 sticky top-3 z-30">
+    <div class="relative">
+      <button onclick="toggleDropdown()" id="dropdownBtn" 
+              class="w-full nav-box rounded-2xl px-4 py-3.5 flex items-center justify-between text-left transition-all active:scale-[0.99] hover:border-amber-400">
+        <div class="flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center shrink-0 shadow-md shadow-black/40 text-base" id="currentCatIconWrap">
+            <i class="fa-solid fa-bowl-food" id="currentCatIcon"></i>
+          </div>
+          <div>
+            <span class="text-[10px] uppercase font-carlotas font-bold tracking-widest text-amber-400/80 block" id="navSubtitle">Categoría de la Carta</span>
+            <span class="font-carlotas font-bold text-amber-100 text-sm sm:text-base leading-tight block drop-shadow-sm" id="currentCatTitle">De Tapeo (Raciones)</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <span id="platosContador" class="bg-amber-950/80 text-amber-300 border border-amber-500/40 font-bold px-3 py-1 rounded-full text-xs shadow-inner">28 platos</span>
+          <div class="w-7 h-7 rounded-lg bg-amber-900/40 flex items-center justify-center text-amber-400 border border-amber-600/30">
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" id="dropdownArrow"></i>
+          </div>
+        </div>
+      </button>
+
+      <div id="dropdownMenu" class="hidden absolute left-0 right-0 top-full mt-2.5 bg-[#1f120c]/98 backdrop-blur-2xl rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.85)] border border-amber-600/40 py-2 z-50 max-h-[70vh] overflow-y-auto overscroll -contain divide-y divide-amber-900/30" style="-webkit-overflow-scrolling: touch;">
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENEDOR PRINCIPAL DE PLATOS -->
+  <main class="max-w-2xl mx-auto px-4 mt-5">
+    <div id="dishContainer" class="space-y-3.5"></div>
+
+    <div id="noResults" class="hidden text-center py-14 bg-stone-900/80 rounded-3xl border border-dashed border-amber-500/40 mt-4 p-6">
+      <div class="w-12 h-12 mx-auto rounded-full bg-amber-900/40 flex items-center justify-center text-amber-400 mb-3">
+        <i class="fa-solid fa-utensils text-xl"></i>
+      </div>
+      <h3 class="text-amber-100 font-bold text-base mb-1" id="noResultsTitle">No hay platos disponibles</h3>
+      <p class="text-stone-400 text-xs" id="noResultsDesc">Por favor, seleccione otra categoría de la carta.</p>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="mt-14 text-center text-xs text-amber-200/50 pb-6">
+      <div class="flex items-center justify-center gap-3 mb-2.5 opacity-60">
+        <span class="h-[1px] w-12 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></span>
+        <i class="fa-solid fa-beer-mug-empty text-amber-400 text-sm"></i>
+        <span class="h-[1px] w-12 bg-gradient-to-r from-transparent via-amber-500 to-transparent"></span>
+      </div>
+      <p class="font-carlotas font-bold text-amber-300 tracking-[0.2em] text-sm">BAR LOS CARLOTAS</p>
+      <p class="text-[11px] text-amber-100/60 mt-0.5" id="footerSubtitle">Tapas caseras, raciones, carnes a la brasa y arroces</p>
+      <p class="text-[10px] text-stone-500 mt-2" id="footerTax">Precios en Euros (€) con IVA incluido.</p>
+    </footer>
+  </main>
+  
+  <script>
+    const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRjcxvy7Jwx1Wf_JIDDASKJCKvTuoVXx-Vf9u01Un9CuWlq8H6hDhvd_xRWB-Pb5sa_l0lAdDmfurNz/pub?gid=0&single=true&output=csv";
+
+    const alergenosMapES = {"1": "Gluten", "2": "Crustáceos", "3": "Huevos", "4": "Pescado", "5": "Cacahuetes", "6": "Soja", "7": "Lácteos", "8": "Frutos con cáscara", "9": "Apio", "10": "Mostaza", "11": "Sésamo", "12": "Sulfitos", "13": "Altramuces", "14": "Moluscos"};
+    const alergenosMapEN = {"1": "Gluten", "2": "Crustaceans", "3": "Eggs", "4": "Fish", "5": "Peanuts", "6": "Soy", "7": "Dairy", "8": "Tree nuts", "9": "Celery", "10": "Mustard", "11": "Sesame", "12": "Sulphites", "13": "Lupin", "14": "Molluscs"};
+
+    const alergenosIconsMap = {
+      "1": "fa-solid fa-wheat-awn",
+      "2": "fa-solid fa-shrimp",
+      "3": "fa-solid fa-egg",
+      "4": "fa-solid fa-fish",
+      "5": "fa-solid fa-cookie",
+      "6": "fa-solid fa-seedling",
+      "7": "fa-solid fa-cheese",
+      "8": "fa-solid fa-apple-whole",
+      "9": "fa-solid fa-carrot",
+      "10": "fa-solid fa-jar",
+      "11": "fa-solid fa-mortar-pestle",
+      "12": "fa-solid fa-wine-bottle",
+      "13": "fa-solid fa-clover",
+      "14": "fa-solid fa-worm"
+    };
+
+    const categorias = [
+      {"id": "tapeo", "nombre": "De Tapeo (Raciones)", "icon": "fa-bowl-food", "nombre_en": "Tapas & Rations"},
+      {"id": "amigos", "nombre": "Entre Amigos", "icon": "fa-users", "nombre_en": "Among Friends"},
+      {"id": "olla", "nombre": "De Nuestra Olla", "icon": "fa-fire-burner", "nombre_en": "From Our Pot"},
+      {"id": "tostas", "nombre": "Tostas de Pan de Cristal", "icon": "fa-bread-slice", "nombre_en": "Crystal Bread Toasts"},
+      {"id": "hamburguesas", "nombre": "Hamburguesas", "icon": "fa-burger", "nombre_en": "Burgers"},
+      {"id": "sandwiches", "nombre": "Sándwiches", "icon": "fa-bread-slice", "nombre_en": "Sandwiches"},
+      {"id": "ensaladas", "nombre": "Ensaladas", "icon": "fa-leaf", "nombre_en": "Salads"},
+      {"id": "combinados", "nombre": "Platos Combinados", "icon": "fa-plate-wheat", "nombre_en": "Combined Plates"},
+      {"id": "carnes", "nombre": "Nuestras Carnes", "icon": "fa-drumstick-bite", "nombre_en": "Our Meats"},
+      {"id": "pescados", "nombre": "Pescados", "icon": "fa-fish", "nombre_en": "Fish"},
+      {"id": "paellas", "nombre": "Paellas", "icon": "fa-kitchen-set", "nombre_en": "Paellas"},
+      {"id": "bocadillos", "nombre": "Bocadillos", "icon": "fa-hotdog", "nombre_en": "Baguettes / Sandwiches"},
+      {"id": "montaditos", "nombre": "Montaditos", "icon": "fa-utensils", "nombre_en": "Montaditos"},
+      {"id": "infantil", "nombre": "Menú Infantil", "icon": "fa-child", "nombre_en": "Kids Menu"},
+      {"id": "postres", "nombre": "Postres", "icon": "fa-cake-candles", "nombre_en": "Desserts"}
+    ];
+
+    const platosOriginales = [{"num": 1, "cat": "tapeo", "nombre": "Ensaladilla Rusa", "en": "Spanish potato salad", "precio": "4,50 €", "al": [3, 4], "top": false}, {"num": 2, "cat": "tapeo", "nombre": "Ensaladilla de Bocas de Mar", "en": "Crab stick salad", "precio": "4,50 €", "al": [1, 2, 3], "top": false}, {"num": 3, "cat": "tapeo", "nombre": "Ensaladilla de Alcachofas y Atún", "en": "Artichoke & tuna salad", "precio": "4,50 €", "al": [4], "top": false}, {"num": 4, "cat": "tapeo", "nombre": "Ensaladilla de Cangrejo", "en": "Crab salad", "precio": "4,50 €", "al": [1, 2, 3, 4], "top": false}, {"num": 5, "cat": "tapeo", "nombre": "Croquetas de Bogavante (2 Unid.)", "en": "Lobster croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 2, 3, 7], "top": false}, {"num": 6, "cat": "tapeo", "nombre": "Croquetas de Gamba al Ajillo (2 Unid.)", "en": "Garlic prawns croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 2, 3, 7, 12], "top": false}, {"num": 7, "cat": "tapeo", "nombre": "Croquetas de Jamón Ibérico (2 Unid.)", "en": "Iberian ham croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 3, 7], "top": true}, {"num": 8, "cat": "tapeo", "nombre": "Croquetas de Rabo de Toro (2 Unid.)", "en": "Bull tail croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 3, 7], "top": false}, {"num": 9, "cat": "tapeo", "nombre": "Croquetas de Gamba Roja (2 Unid.)", "en": "Red prawn croquette (2 Unid.)", "precio": "5,00 €", "al": [1, 2, 3, 7, 12], "top": false}, {"num": 10, "cat": "tapeo", "nombre": "Croquetas de Pulpo (2 Unid.)", "en": "Octopus croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 3, 7, 14], "top": false}, {"num": 11, "cat": "tapeo", "nombre": "Croquetas de Queso Parmesano y Bacón (2 Unid.)", "en": "Parmesan cheese and bacon croquette (2 Unid.)", "precio": "3,50 €", "al": [1, 3, 7], "top": false}, {"num": 12, "cat": "tapeo", "nombre": "Surtido de croquetas de carne (6 Unid.)", "en": "Assortment of meat croquettes (6 unid)", "precio": "10,50 €", "al": [1, 3, 7], "top": true}, {"num": 13, "cat": "tapeo", "nombre": "Surtido de croquetas de marisco (6 Unid.)", "en": "Assortment of seafood croquettes (6 unid)", "precio": "12,00 €", "al": [1, 2, 3, 7, 12, 14], "top": false}, {"num": 14, "cat": "tapeo", "nombre": "Buñuelos Queso Cabra c/Cebolla Caramel. (2 Unid.)", "en": "Goat cheese with caramelised onion fritter (2 Unid.)", "precio": "3,95 €", "al": [1, 3, 7], "top": false}, {"num": 15, "cat": "tapeo", "nombre": "Buñuelos de Bacalao c/Cebolla Caramel. (2 Unid.)", "en": "Codfish with caramelised onion fritter (2 Unid.)", "precio": "3,95 €", "al": [1, 3, 4, 7], "top": false}, {"num": 16, "cat": "tapeo", "nombre": "Twister de langostinos con Miel (1 Unid.)", "en": "Prawn twister (1 Unid.)", "precio": "1,95 €", "al": [1, 2, 3, 7, 12], "top": false}, {"num": 17, "cat": "tapeo", "nombre": "Crujiente de Bocas de Mar con Miel (1 Unid.)", "en": "Crispy mouthwash with honey (1 Unid.)", "precio": "1,95 €", "al": [1, 2, 3, 4], "top": false}, {"num": 18, "cat": "tapeo", "nombre": "Mejillón Tigre", "en": "Tigre (stuffed mussels covered in bechamel sauce)", "precio": "2,00 €", "al": [1, 3, 14], "top": false}, {"num": 19, "cat": "tapeo", "nombre": "Tortitas de Camarón (2 Unid.)", "en": "Spanish shrimp fritters (2 Unid.)", "precio": "3,50 €", "al": [1, 3, 4], "top": false}, {"num": 20, "cat": "tapeo", "nombre": "Zamburiña", "en": "Scallop", "precio": "2,95 €", "al": [14], "top": false}, {"num": 21, "cat": "tapeo", "nombre": "Alitas de Pollo con salsa barbacoa", "en": "Chicken wings with barbecue sauce", "precio": "7,95 €", "al": [1, 6], "top": false}, {"num": 22, "cat": "tapeo", "nombre": "Verduras en tempura con miel", "en": "Tempura vegetables with honey", "precio": "6,95 €", "al": [1, 3], "top": false}, {"num": 23, "cat": "tapeo", "nombre": "Lacón Preparado", "en": "Pork shoulder", "precio": "11,00 €", "al": [], "top": false}, {"num": 24, "cat": "tapeo", "nombre": "Queso Brie (frito con mermelada de Tomate)", "en": "Brie cheese (brie cheese deep-fried with tomato jam)", "precio": "11,00 €", "al": [1, 7], "top": false}, {"num": 25, "cat": "tapeo", "nombre": "Tabla de Quesos", "en": "Cheese board", "precio": "13,00 €", "al": [7], "top": false}, {"num": 26, "cat": "tapeo", "nombre": "Queso Cabra CARLOTAS (frito con salsas)", "en": "Goat cheese Carlotas (fried with sauces)", "precio": "11,00 €", "al": [1, 7], "top": false}, {"num": 27, "cat": "tapeo", "nombre": "Carpaccio de Salmón Ahumado a las finas hierbas", "en": "Salmon carpaccio with fine herbs", "precio": "13,00 €", "al": [4], "top": false}, {"num": 28, "cat": "tapeo", "nombre": "Gamba Roja a la plancha (unidad)", "en": "Grilled red prawn (unit)", "precio": "2,50 €", "al": [2, 12], "top": false}, {"num": 29, "cat": "amigos", "nombre": "Pan de Hogaza Tostado con Tomate y Ali-oli", "en": "Toasted artisan bread with tomato & ali-oli", "precio": "7,00 €", "al": [1, 3], "top": false}, {"num": 30, "cat": "amigos", "nombre": "Patatas Carlotas (c/salsa Brava Casera)", "en": "Carlotas chips (Served with homemade spicy sauce)", "precio": "7,50 €", "al": [2, 12], "top": true}, {"num": 31, "cat": "amigos", "nombre": "Patatas Cheese Bacon", "en": "Cheese Bacon chips", "precio": "8,00 €", "al": [1, 7], "top": false}, {"num": 32, "cat": "amigos", "nombre": "Nachos Supreme (c/queso, bacon y jalapeños)", "en": "Nachos Supreme (with cheese, bacon & jalapenos)", "precio": "8,50 €", "al": [1, 7], "top": false}, {"num": 33, "cat": "amigos", "nombre": "Huevos \"Aponaos\" (c/bacon y pimientos Padrón)", "en": "\"Aponaos\" Eggs (with bacon and Padrón peppers)", "precio": "8,50 €", "al": [3], "top": false}, {"num": 34, "cat": "amigos", "nombre": "Champiñones a la plancha", "en": "Grilled mushrooms", "precio": "7,95 €", "al": [12], "top": false}, {"num": 35, "cat": "amigos", "nombre": "Parrillada de Verduras", "en": "Grilled vegetables", "precio": "12,00 €", "al": [12], "top": false}, {"num": 36, "cat": "amigos", "nombre": "Revuelto de Gambas, setas y Ajetes", "en": "Scrambled prawns, garlic & mushrooms", "precio": "11,00 €", "al": [2, 3, 12], "top": false}, {"num": 37, "cat": "amigos", "nombre": "Calamares a la Romana", "en": "Calamari", "precio": "13,00 €", "al": [1, 14], "top": false}, {"num": 38, "cat": "amigos", "nombre": "Fritura de Pescado", "en": "Fish fry", "precio": "12,00 €", "al": [1, 2, 4, 12], "top": false}, {"num": 39, "cat": "amigos", "nombre": "Gambas al Ajillo", "en": "Garlic prawns", "precio": "13,00 €", "al": [2, 12], "top": false}, {"num": 40, "cat": "amigos", "nombre": "Almejas a la Marinera", "en": "Clams a la Marinière", "precio": "12,00 €", "al": [14], "top": false}, {"num": 41, "cat": "amigos", "nombre": "Sepia a la Brasa", "en": "Charcoal-grilled cuttlefish", "precio": "19,00 €", "al": [14], "top": false}, {"num": 42, "cat": "amigos", "nombre": "Pulpo a la Brasa XL", "en": "Charcoal-grilled octopus XL", "precio": "32,00 €", "al": [14], "top": true}, {"num": 43, "cat": "amigos", "nombre": "Calamar Nacional a la Plancha (L)", "en": "National calamari (L)", "precio": "22,00 €", "al": [14], "top": false}, {"num": 44, "cat": "amigos", "nombre": "Tabla de Jamón y Queso Manchego", "en": "Ham & manchego cheese board", "precio": "12,00 €", "al": [7], "top": false}, {"num": 45, "cat": "amigos", "nombre": "Tabla de Jamón Ibérico y Queso Manchego", "en": "Iberian ham & manchego cheese board", "precio": "16,00 €", "al": [7], "top": false}, {"num": 46, "cat": "olla", "nombre": "Taza con Pelota", "en": "Soup with meatball", "precio": "3,50 €", "al": [1, 3, 9], "top": false}, {"num": 47, "cat": "olla", "nombre": "Fideos con Pelota", "en": "Noodles soup with meatball", "precio": "4,50 €", "al": [1, 3, 9], "top": false}, {"num": 48, "cat": "olla", "nombre": "Callos", "en": "Tripe stew", "precio": "7,00 €", "al": [1, 9, 12], "top": false}, {"num": 49, "cat": "olla", "nombre": "Ternera en Salsa con patatas fritas", "en": "Beef in sauce with potatoes", "precio": "9,95 €", "al": [1, 9, 12], "top": false}, {"num": 50, "cat": "olla", "nombre": "Codillo en Salsa", "en": "Pork shank in sauce", "precio": "9,95 €", "al": [1], "top": false}, {"num": 51, "cat": "olla", "nombre": "Muslo de Pollo en Salsa", "en": "Chicken thigh in sauce", "precio": "9,00 €", "al": [1, 9, 12], "top": false}, {"num": 52, "cat": "olla", "nombre": "Manitas de Cerdo", "en": "Pork feet stew", "precio": "8,00 €", "al": [1, 9, 12], "top": false}, {"num": 53, "cat": "olla", "nombre": "Carrillera en Salsa", "en": "Pork cheeks in sauce", "precio": "9,95 €", "al": [1, 9, 12], "top": true}, {"num": 54, "cat": "olla", "nombre": "Habas Hervidas (según temporada)", "en": "Boiled beans in sauce (second season)", "precio": "5,50 €", "al": [12], "top": false}, {"num": 55, "cat": "tostas", "nombre": "Tosta Vikinga", "desc": "Solomillo de cerdo c/queso cabra y cebolla caramelizada", "en": "Pork fillet with goat cheese & caramelized onion", "precio": "8,95 €", "al": [1, 7], "top": false}, {"num": 56, "cat": "tostas", "nombre": "Tosta Bergen", "desc": "Salmón ahumado, tomate restregado y queso brie", "en": "Smoked salmon, rubbed tomato & brie cheese", "precio": "9,95 €", "al": [1, 4, 7], "top": false}, {"num": 57, "cat": "tostas", "nombre": "Tosta Noruega", "desc": "Salmón ahumado, queso Philadelphia y aguacate", "en": "Smoked salmon, Philadelphia cheese & avocado", "precio": "9,95 €", "al": [1, 4, 7], "top": false}, {"num": 58, "cat": "tostas", "nombre": "Tosta Mediterránea", "desc": "Berenjena, queso de cabra y mermelada tomate", "en": "Eggplant, goat cheese and tomato jam", "precio": "8,95 €", "al": [1, 7], "top": false}, {"num": 59, "cat": "tostas", "nombre": "Tosta Carlotas", "desc": "Mix lechugas, frutos secos, queso cabra y salsa frutos rojos", "en": "Mixed lettuce, nuts, goat cheese, and red berry sauce", "precio": "8,95 €", "al": [1, 7, 8], "top": true}, {"num": 60, "cat": "tostas", "nombre": "Tosta Andaluza", "desc": "Calamares, ali-oli y perejil", "en": "Calamari, aioli, and parsley", "precio": "8,95 €", "al": [1, 3, 14], "top": false}, {"num": 61, "cat": "tostas", "nombre": "Tosta Donosti", "desc": "Txistorra con tortilla de patata", "en": "Txistorra with potato omelette", "precio": "9,95 €", "al": [1, 7, 12], "top": false}, {"num": 62, "cat": "tostas", "nombre": "Tosta La Melosa", "desc": "Carrillera con cebolla frita", "en": "Beef cheek with fried onions", "precio": "9,95 €", "al": [1, 7], "top": false}, {"num": 63, "cat": "tostas", "nombre": "Tosta Mallorquina", "desc": "Sobrasada con nueces y miel", "en": "Sobrasada with walnuts and honey", "precio": "9,95 €", "al": [1, 8, 12], "top": false}, {"num": 64, "cat": "tostas", "nombre": "Tosta Cantábrico", "desc": "Aguacate, anchoas y tomates cherry", "en": "Avocado, anchovies and cherry tomatoes", "precio": "8,95 €", "al": [1, 4], "top": false}, {"num": 65, "cat": "tostas", "nombre": "Tosta Vegana", "desc": "Aguacate, tomates cherry y mix de lechugas", "en": "Avocado, tomatoes cherry & mix of lettuce", "precio": "8,95 €", "al": [1], "top": false}, {"num": 66, "cat": "hamburguesas", "nombre": "Hamburguesa Normal con patatas fritas", "desc": "Hamburguesa de ternera, tomate, mix lechuga, cebolla y queso", "en": "Beef meat burger with tomato, lettuce, onion & cheese", "precio": "6,95 €", "al": [1, 7, 12], "top": false}, {"num": 67, "cat": "hamburguesas", "nombre": "Hamburguesa Superman con patatas fritas", "desc": "Hamburguesa de ternera, tomate, mix lechuga, cebolla, bacon, queso y huevo frito", "en": "Beef meat burger with tomato, lettuce, onion, bacon, cheese & fried egg", "precio": "7,95 €", "al": [1, 3, 7, 12], "top": false}, {"num": 68, "cat": "hamburguesas", "nombre": "Hamburguesa Rubia Gallega con patatas fritas", "desc": "Hamburguesa de ternera Rubia Gallega, mix lechuga, queso azul y cebolla caramelizada", "en": "Galician meat burger with lettuce mix, blue cheese & caramelized onion", "precio": "9,95 €", "al": [1, 7, 12], "top": true}, {"num": 69, "cat": "hamburguesas", "nombre": "Hamburguesa Carlotas con patatas fritas", "desc": "Hamburguesa de ternera Rubia Gallega, mix lechuga, tomate, cebolla, bacon, queso y huevo frito", "en": "Galician meat burger with lettuce mix, tomato, onion, bacon, cheese & fried egg", "precio": "9,95 €", "al": [1, 3, 7, 12], "top": true}, {"num": 70, "cat": "hamburguesas", "nombre": "Hamburguesa Marvel con patatas fritas", "desc": "Hamburguesa de ternera Rubia Gallega, mix lechuga, queso de rulo de cabra, bacon y cebolla caramelizada", "en": "Galician meat burger with lettuce mix, bacon, goat cheese & caramelized onion", "precio": "10,95 €", "al": [1, 3, 7, 12], "top": false}, {"num": 71, "cat": "hamburguesas", "nombre": "Hamburguesa Txiki Crispy con patatas fritas", "desc": "Hamburguesa de pollo Crispy, tomate, lechuga, cebolla y queso", "en": "Crispy chicken burger, tomato, lettuce, onion & cheese", "precio": "7,95 €", "al": [1, 7, 12], "top": false}, {"num": 72, "cat": "hamburguesas", "nombre": "Hamburguesa Iron Man con patatas fritas", "desc": "Hamburguesa de pollo CRISPY, tomate, mix lechuga, cebolla, bacon, queso y huevo frito", "en": "Crispy chicken burger, tomato, lettuce, onion, bacon, cheese & egg", "precio": "8,95 €", "al": [1, 3, 7, 12], "top": false}, {"num": 73, "cat": "hamburguesas", "nombre": "Hamburguesa Capitán América con patatas fritas", "desc": "Hamburguesa de pollo CRISPY AMERICANA, tomate, mix lechuga, cebolla, bacon, queso y huevo frito", "en": "Crispy American chicken burger, tomato, lettuce, onion, bacon cheese & egg", "precio": "8,95 €", "al": [1, 3, 7, 12], "top": false}, {"num": 74, "cat": "hamburguesas", "nombre": "Hamburguesa Vegana con patatas fritas", "desc": "Hamburguesa vegana con aguacate, tomate, mix lechuga, champiñones y cebolla", "en": "Vegan burger with avocado, onion, tomato & lettuce mix", "precio": "9,95 €", "al": [1], "top": false}, {"num": 75, "cat": "sandwiches", "nombre": "Sándwich Mixto con patatas fritas", "desc": "Jamón York y queso fundido", "en": "Ham & melted cheese", "precio": "4,50 €", "al": [1, 7], "top": false}, {"num": 76, "cat": "sandwiches", "nombre": "Sándwich Vegetal con patatas fritas", "desc": "Mahonesa, mix lechuga, tomate, espárragos, cebolla, atún y huevo", "en": "Mayonnaise, lettuce, tomato, asparagus, onion, tuna & egg", "precio": "7,50 €", "al": [1, 3, 4], "top": false}, {"num": 77, "cat": "sandwiches", "nombre": "Sándwich Club con patatas fritas", "desc": "Pollo, bacon, huevo frito, mix lechuga, tomate y mahonesa", "en": "Chicken, bacon, egg, lettuce, tomato & mayonnaise", "precio": "8,50 €", "al": [1, 3], "top": false}, {"num": 78, "cat": "sandwiches", "nombre": "Sándwich Vegano con patatas fritas", "desc": "Aguacate, mix de lechugas, cebolla y tomate", "en": "Avocado, lettuce mix, onion & tomato", "precio": "8,00 €", "al": [1], "top": false}, {"num": 79, "cat": "ensaladas", "nombre": "Ensalada Mixta", "desc": "Mix de lechugas, tomate, atún, huevo, cebolla, zanahoria y olivas", "en": "Lettuce, tomato, tuna, egg, onion, carrot, corn & olives", "precio": "12,00 €", "al": [3, 4], "top": false}, {"num": 80, "cat": "ensaladas", "nombre": "Ensalada Murciana", "desc": "Tomate, cebolla, huevo, aceitunas del cuquillo y atún", "en": "Tomato, onion, egg, cuquillo olives & tuna", "precio": "12,00 €", "al": [2, 3], "top": false}, {"num": 81, "cat": "ensaladas", "nombre": "Ensalada de Capellanes", "desc": "Tomate, cebolla, olivas y capellán", "en": "Tomato, onion olives & crispy salad flakes with bbq hake", "precio": "15,00 €", "al": [4], "top": false}, {"num": 82, "cat": "ensaladas", "nombre": "Ensalada César", "desc": "Mix de lechugas, tomate, cebolla frita, pechuga de pollo, bacon y salsa césar", "en": "Lettuce mix, tomato, fried onion, chicken breast, bacon & caesar sauce", "precio": "14,00 €", "al": [1, 3, 4, 7], "top": false}, {"num": 83, "cat": "ensaladas", "nombre": "Ensalada CARLOTAS", "desc": "Mix lechugas, tomate, frutos secos, cebolla frita, queso de cabra y salsa de frutos rojos", "en": "Lettuce mix, tomato, nuts, fried onion, goat cheese & berries sauce", "precio": "14,00 €", "al": [1, 7, 8, 11], "top": true}, {"num": 84, "cat": "combinados", "nombre": "Pechuga de pollo a la plancha o empanada", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Grilled chicken breast or breaded chicken breast", "precio": "9,00 €", "al": [3], "top": false}, {"num": 85, "cat": "combinados", "nombre": "Nuggets de pollo", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Chicken nuggets", "precio": "8,00 €", "al": [1, 3], "top": false}, {"num": 86, "cat": "combinados", "nombre": "Chuletas de cerdo", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Pork chops", "precio": "9,95 €", "al": [3], "top": false}, {"num": 87, "cat": "combinados", "nombre": "Lomo fresco", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Fresh pork loin", "precio": "9,00 €", "al": [3], "top": false}, {"num": 88, "cat": "combinados", "nombre": "Lomo adobado", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Marinated pork loin", "precio": "9,00 €", "al": [3], "top": false}, {"num": 89, "cat": "combinados", "nombre": "Salchichas", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Sausages", "precio": "9,00 €", "al": [3, 12], "top": false}, {"num": 90, "cat": "combinados", "nombre": "Filete de ternera", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Beef fillet", "precio": "11,00 €", "al": [3], "top": false}, {"num": 91, "cat": "combinados", "nombre": "Merluza a la plancha o empanada", "desc": "Acompañado de patatas fritas y huevo frito", "en": "Grilled or breaded hake", "precio": "11,00 €", "al": [3, 4], "top": false}, {"num": 92, "cat": "carnes", "nombre": "Muslo de pollo deshuesado a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Boneless chicken thigh", "precio": "14,00 €", "al": [3, 4], "top": false}, {"num": 93, "cat": "carnes", "nombre": "Secreto Ibérico a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Grilled Iberian pork secreto", "precio": "16,00 €", "al": [], "top": true}, {"num": 94, "cat": "carnes", "nombre": "Chuletillas de cordero a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Lamb chops", "precio": "16,95 €", "al": [], "top": false}, {"num": 95, "cat": "carnes", "nombre": "Entrecot a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Charcoal-grilled entrecôte", "precio": "20,95 €", "al": [], "top": false}, {"num": 96, "cat": "carnes", "nombre": "Solomillo de ternera a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Fillet steak to taste", "precio": "21,95 €", "al": [], "top": false}, {"num": 97, "cat": "carnes", "nombre": "Chuletón a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Charcoal-grilled T-Bone steak", "precio": "23,95 €", "al": [], "top": true}, {"num": 98, "cat": "carnes", "nombre": "Parrillada mixta de carne a la brasa", "desc": "Acompañado con patatas y guarnición", "en": "Mixed barbecued meat", "precio": "17,95 €", "al": [12], "top": false}, {"num": 99, "cat": "pescados", "nombre": "Atún en salsa verde", "desc": "Acompañado con patatas y guarnición", "en": "Tuna in green sauce", "precio": "15,00 €", "al": [4], "top": false}, {"num": 100, "cat": "pescados", "nombre": "Dorada a la espalda", "desc": "Acompañado con patatas y guarnición", "en": "Grilled gilt-head bream", "precio": "14,00 €", "al": [4], "top": false}, {"num": 101, "cat": "pescados", "nombre": "Emperador en salsa verde", "desc": "Acompañado con patatas y guarnición", "en": "Swordfish in green sauce", "precio": "14,00 €", "al": [4], "top": false}, {"num": 102, "cat": "pescados", "nombre": "Lenguado con salsa verde", "desc": "Acompañado con patatas y guarnición", "en": "Sole in green sauce", "precio": "14,00 €", "al": [4], "top": false}, {"num": 103, "cat": "pescados", "nombre": "Boquerones fritos (12 unidades)", "desc": "Acompañado con patatas y guarnición", "en": "Fried anchovies (12 units)", "precio": "12,00 €", "al": [1, 4], "top": false}, {"num": 104, "cat": "paellas", "nombre": "Arroz a banda (Mín. 2 pers.)", "desc": "Paella por encargo, precio por ración", "en": "Arroz a banda", "precio": "14,00 € /pers", "al": [1, 2, 4, 12, 14], "top": true}, {"num": 105, "cat": "paellas", "nombre": "Paella de verduras y boquerones (Mín. 2 pers.)", "desc": "Paella por encargo, precio por ración", "en": "Vegetables & whitebait paella", "precio": "14,00 € /pers", "al": [1, 4], "top": false}, {"num": 106, "cat": "paellas", "nombre": "Paella de marisco (Mín. 2 pers.)", "desc": "Paella por encargo, precio por ración", "en": "Seafood paella", "precio": "16,00 € /pers", "al": [1, 2, 4, 12, 14], "top": true}, {"num": 107, "cat": "paellas", "nombre": "Paella de conejo con serranas (Mín. 2 pers.)", "desc": "Rice with rabbit and small snails", "precio": "15,00 € /pers", "al": [1, 14], "top": false}, {"num": 108, "cat": "paellas", "nombre": "Paella mixta (Mín. 2 pers.)", "desc": "Mixed paella", "precio": "15,00 € /pers", "al": [1, 4, 2, 12, 14], "top": false}, {"num": 109, "cat": "bocadillos", "nombre": "Bocadillo Pepito de ternera", "en": "Beef grilled sandwich", "precio": "6,00 €", "al": [1, 7], "top": false}, {"num": 110, "cat": "bocadillos", "nombre": "Bocadillo Tortilla de patata y magra con tomate", "en": "Spanish potato omelette & lean meat with tomato sauce", "precio": "7,00 €", "al": [1, 3], "top": false}, {"num": 111, "cat": "bocadillos", "nombre": "Bocadillo Pechuga de pollo", "en": "Chicken breast", "precio": "5,00 €", "al": [1], "top": false}, {"num": 112, "cat": "bocadillos", "nombre": "Bocadillo Lomo fresco", "en": "Fresh loin", "precio": "5,00 €", "al": [1], "top": false}, {"num": 113, "cat": "bocadillos", "nombre": "Bocadillo Lomo adobado", "en": "Marinated pork tenderloin", "precio": "5,00 €", "al": [1], "top": false}, {"num": 114, "cat": "bocadillos", "nombre": "Bocadillo Chorizo", "en": "Chorizo", "precio": "5,00 €", "al": [1, 12], "top": false}, {"num": 115, "cat": "bocadillos", "nombre": "Bocadillo Salchichas", "en": "Sausage", "precio": "5,00 €", "al": [1, 12], "top": false}, {"num": 116, "cat": "bocadillos", "nombre": "Bocadillo Longaniza", "en": "Pork sausage", "precio": "5,00 €", "al": [1, 12], "top": false}, {"num": 117, "cat": "bocadillos", "nombre": "Bocadillo Panceta", "en": "Streaky bacon", "precio": "5,00 €", "al": [1], "top": false}, {"num": 118, "cat": "bocadillos", "nombre": "Bocadillo Bacon", "en": "Bacon", "precio": "5,00 €", "al": [1], "top": false}, {"num": 119, "cat": "bocadillos", "nombre": "Bocadillo Morcilla", "en": "Black pudding", "precio": "5,00 €", "al": [1], "top": false}, {"num": 120, "cat": "bocadillos", "nombre": "Bocadillo Blanco y Negro", "en": "Black and White", "precio": "6,50 €", "al": [1, 12], "top": true}, {"num": 121, "cat": "bocadillos", "nombre": "Bocadillo Tortilla de patata", "en": "Spanish potato omelette", "precio": "5,00 €", "al": [1, 3], "top": false}, {"num": 122, "cat": "bocadillos", "nombre": "Bocadillo Tortilla francesa", "en": "French omelette", "precio": "5,00 €", "al": [1, 3], "top": false}, {"num": 123, "cat": "bocadillos", "nombre": "Bocadillo Catalana", "en": "Catalana", "precio": "5,00 €", "al": [1], "top": false}, {"num": 124, "cat": "bocadillos", "nombre": "Bocadillo Jamón", "en": "Ham", "precio": "5,00 €", "al": [1], "top": false}, {"num": 125, "cat": "bocadillos", "nombre": "Bocadillo Calamares", "en": "Fried calamari", "precio": "6,50 €", "al": [1, 14], "top": false}, {"num": 126, "cat": "bocadillos", "nombre": "Bocadillo Magra con tomate", "en": "Lean meat with tomato sauce", "precio": "6,00 €", "al": [1], "top": false}, {"num": 127, "cat": "bocadillos", "nombre": "Bocadillo Atún", "en": "Tuna", "precio": "6,00 €", "al": [1, 4], "top": false}, {"num": 128, "cat": "bocadillos", "nombre": "Bocadillo Anchoas", "en": "Anchovies", "precio": "6,50 €", "al": [1, 4], "top": false}, {"num": 129, "cat": "bocadillos", "nombre": "Bocadillo Salmón", "en": "Salmón", "precio": "6,95 €", "al": [1, 4], "top": false}, {"num": 130, "cat": "montaditos", "nombre": "Montadito Pechuga de pollo", "en": "Chicken breast", "precio": "2,50 €", "al": [1], "top": false}, {"num": 131, "cat": "montaditos", "nombre": "Montadito Lomo fresco", "en": "Fresh loin", "precio": "2,50 €", "al": [1], "top": false}, {"num": 132, "cat": "montaditos", "nombre": "Montadito Lomo adobado", "en": "Marinated pork tenderloin", "precio": "2,50 €", "al": [1], "top": false}, {"num": 133, "cat": "montaditos", "nombre": "Montadito Chorizo", "en": "Chorizo", "precio": "2,50 €", "al": [1, 12], "top": false}, {"num": 134, "cat": "montaditos", "nombre": "Montadito Salchicha", "en": "Sausage", "precio": "2,50 €", "al": [1, 12], "top": false}, {"num": 135, "cat": "montaditos", "nombre": "Montadito Longaniza", "en": "Pork sausage", "precio": "2,50 €", "al": [1, 12], "top": false}, {"num": 136, "cat": "montaditos", "nombre": "Montadito Panceta", "en": "Streaky bacon", "precio": "2,50 €", "al": [1], "top": false}, {"num": 137, "cat": "montaditos", "nombre": "Montadito Bacon", "en": "Bacon", "precio": "2,50 €", "al": [1], "top": false}, {"num": 138, "cat": "montaditos", "nombre": "Montadito Morcilla", "en": "Black pudding", "precio": "2,50 €", "al": [1], "top": false}, {"num": 139, "cat": "montaditos", "nombre": "Montadito Ensaladilla", "en": "Potato Salad", "precio": "2,50 €", "al": [3, 4], "top": false}, {"num": 140, "cat": "montaditos", "nombre": "Montadito Jamón serrano", "en": "Serrano ham", "precio": "2,50 €", "al": [1], "top": false}, {"num": 141, "cat": "montaditos", "nombre": "Montadito Tortilla de patata", "en": "Spanish potato salad", "precio": "2,50 €", "al": [1, 3, 4], "top": false}, {"num": 142, "cat": "montaditos", "nombre": "Montadito Anchoas", "en": "Anchovies", "precio": "2,50 €", "al": [1, 4], "top": false}, {"num": 143, "cat": "montaditos", "nombre": "Montadito Atún", "en": "Tuna", "precio": "2,50 €", "al": [1, 4], "top": false}, {"num": 144, "cat": "montaditos", "nombre": "Montadito Salmón", "en": "Salmón", "precio": "3,50 €", "al": [1, 4], "top": false}, {"num": "INF", "cat": "infantil", "nombre": "Menú Infantil Completo", "desc": "Entrante a elegir (Croquetas 1-3-7, Palitos de queso Mozzarella 1-3-7, Taza con pelota 1-3-9) + Principal a elegir (Nuggetts de pollo 1-3, Hamburguesa 1-12, Sandwich Mixto 1-7)", "en": "Kids Menu with Starter and Main Course", "precio": "12,00 €", "al": [1, 3, 7], "top": false}, {"num": 145, "cat": "postres", "nombre": "Flan de huevo con nata", "en": "Crème caramel with cream", "precio": "3,95 €", "al": [3, 7], "top": false}, {"num": 146, "cat": "postres", "nombre": "Pan de Calatrava", "en": "Calatrava bred pudding", "precio": "4,95 €", "al": [1, 3, 7], "top": false}, {"num": 147, "cat": "postres", "nombre": "Natillas", "en": "Custard", "precio": "4,50 €", "al": [1, 3, 7], "top": false}, {"num": 148, "cat": "postres", "nombre": "Copa de chocolate con nata", "en": "Chocolate cup with cream", "precio": "4,50 €", "al": [3, 7], "top": false}, {"num": 149, "cat": "postres", "nombre": "Crema catalana", "en": "Crème brûlée", "precio": "4,95 €", "al": [3, 7], "top": false}, {"num": 150, "cat": "postres", "nombre": "Profiteroles con chocolate", "en": "Profiteroles with chocolate", "precio": "4,50 €", "al": [1, 3, 7], "top": false}, {"num": 151, "cat": "postres", "nombre": "Milhoja de merengue con nata", "en": "Meringue sheet with cream", "precio": "4,95 €", "al": [1, 3, 7], "top": false}, {"num": 152, "cat": "postres", "nombre": "Milhoja de crema con helado de vainilla", "en": "Cream mille-feuille with vanilla ice cream", "precio": "5,95 €", "al": [1, 3, 7], "top": false}, {"num": 153, "cat": "postres", "nombre": "Coulant de chocolate con helado de vainilla", "en": "Chocolate coulant with vanilla ice cream", "precio": "5,95 €", "al": [1, 3, 7], "top": false}, {"num": 154, "cat": "postres", "nombre": "Coulant de turrón con helado de vainilla", "en": "Nougat coulant with vanilla ice cream", "precio": "5,95 €", "al": [1, 3, 7], "top": false}, {"num": 155, "cat": "postres", "nombre": "Brownie con chocolate caliente y helado vainilla", "en": "Brownie with hot chocolate & vanilla ice cream", "precio": "5,95 €", "al": [1, 3, 7], "top": false}, {"num": 156, "cat": "postres", "nombre": "Gofre con chocolate y helado de vainilla", "en": "Waffle with chocolate & vanilla ice cream", "precio": "4,50 €", "al": [1, 3, 7], "top": false}, {"num": 157, "cat": "postres", "nombre": "Tarta de almendra", "en": "Almond cake", "precio": "4,50 €", "al": [1, 3, 7, 8], "top": false}, {"num": 158, "cat": "postres", "nombre": "Tarta de Turrón", "en": "Nougat Cake", "precio": "4,50 €", "al": [1, 3, 7, 8], "top": false}, {"num": 159, "cat": "postres", "nombre": "Tarta de la abuela", "en": "Grandma's cake", "precio": "4,95 €", "al": [1, 3, 7], "top": true}, {"num": 160, "cat": "postres", "nombre": "Tarta de Lotus", "en": "Lotus cake", "precio": "5,50 €", "al": [1, 3, 7], "top": true}, {"num": 161, "cat": "postres", "nombre": "Tarta de queso con arándanos", "en": "Cheese and Blueberries cake", "precio": "4,95 €", "al": [1, 3, 7], "top": false}, {"num": 162, "cat": "postres", "nombre": "Tarta de queso con dulce de leche", "en": "Cheese and caramel sauce", "precio": "4,95 €", "al": [1, 3, 7], "top": false}, {"num": 163, "cat": "postres", "nombre": "Tarta de chocolate", "en": "Chocolate cake", "precio": "4,50 €", "al": [1, 3, 7], "top": false}, {"num": 164, "cat": "postres", "nombre": "Tarta al Whisky", "en": "Whisky cake", "precio": "4,50 €", "al": [1, 3, 7], "top": false}, {"num": 165, "cat": "postres", "nombre": "Copa de helado", "en": "Ice cream cup", "precio": "4,50 €", "al": [3, 7], "top": false}, {"num": 166, "cat": "postres", "nombre": "Fruta del tiempo", "en": "Season fruit", "precio": "4,50 €", "al": [], "top": false}];
+
+	// Carga los datos guardados de Google Sheets si existen; si no, usa el respaldo
+	const platosGuardados = localStorage.getItem('carlotas_menu_data');
+	let platos = platosGuardados ? JSON.parse(platosGuardados) : [...platosOriginales];
+    let currentCategory = 'tapeo';
+    let currentLang = 'es';
+
+    // Función robusta para leer CSV con comas dentro de comillas
+    function parseCSV(text) {
+      const rows = [];
+      let currentRow = [];
+      let currentVal = '';
+      let insideQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const nextChar = text[i + 1];
+
+        if (char === '"') {
+          if (insideQuotes && nextChar === '"') {
+            currentVal += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          currentRow.push(currentVal.trim());
+          currentVal = '';
+        } else if ((char === '\r' || char === '\n') && !insideQuotes) {
+          if (char === '\r' && nextChar === '\n') i++;
+          currentRow.push(currentVal.trim());
+          if (currentRow.length > 1 || currentRow[0] !== '') {
+            rows.push(currentRow);
+          }
+          currentRow = [];
+          currentVal = '';
+        } else {
+          currentVal += char;
+        }
+      }
+      if (currentVal || currentRow.length > 0) {
+        currentRow.push(currentVal.trim());
+        rows.push(currentRow);
+      }
+      return rows;
+    }
+
+    function toggleLangDropdown() {
+      document.getElementById('langMenu').classList.toggle('hidden');
+    }
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('langMenu').classList.add('hidden');
+      
+      if (lang === 'es') {
+        document.getElementById('langFlag').innerText = '🇪🇸';
+        document.getElementById('langLabel').innerText = 'Español';
+        document.getElementById('headerTagline').innerHTML = 'Tradición &bull; Desde 1986';
+        document.getElementById('headerSubtitle').innerHTML = 'Tapas &bull; Raciones &bull; Brasas &bull; Arroces &bull; Postres';
+        document.getElementById('navSubtitle').innerText = 'Categoría de la Carta';
+        document.getElementById('footerSubtitle').innerText = 'Tapas caseras, raciones, carnes a la brasa y arroces';
+        document.getElementById('footerTax').innerText = 'Precios en Euros (€) con IVA incluido.';
+        document.getElementById('noResultsTitle').innerText = 'No hay platos disponibles';
+        document.getElementById('noResultsDesc').innerText = 'Por favor, seleccione otra categoría de la carta.';
+      } else {
+        document.getElementById('langFlag').innerText = '🇬🇧';
+        document.getElementById('langLabel').innerText = 'English';
+        document.getElementById('headerTagline').innerHTML = 'Tradition &bull; Since 1986';
+        document.getElementById('headerSubtitle').innerHTML = 'Tapas &bull; Rations &bull; Grilled Meats &bull; Paellas &bull; Desserts';
+        document.getElementById('navSubtitle').innerText = 'Menu Category';
+        document.getElementById('footerSubtitle').innerText = 'Homemade tapas, grilled meats, paellas and desserts';
+        document.getElementById('footerTax').innerText = 'Prices in Euros (€) VAT included.';
+        document.getElementById('noResultsTitle').innerText = 'No dishes available';
+        document.getElementById('noResultsDesc').innerText = 'Please select another category from the menu.';
+      }
+
+      const catObj = categorias.find(c => c.id === currentCategory);
+      if (catObj) {
+        document.getElementById('currentCatTitle').innerText = currentLang === 'es' ? catObj.nombre : (catObj.nombre_en || catObj.nombre);
+      }
+
+      initDropdown();
+      filtrarPlatos();
+    }
+
+    function initDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.innerHTML = categorias.map(c => {
+        const title = currentLang === 'es' ? c.nombre : (c.nombre_en || c.nombre);
+        const count = platos.filter(p => p.cat === c.id).length;
+        return `
+        <button onclick="selectCategory('${c.id}')" 
+                class="w-full px-4 py-3.5 flex items-center justify-between text-left hover:bg-amber-800/30 transition-colors ${c.id === currentCategory ? 'bg-amber-900/50 font-bold text-amber-300' : 'text-stone-300'}">
+          <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded-xl ${c.id === currentCategory ? 'bg-gradient-to-br from-amber-500 to-amber-700 text-white shadow-md' : 'bg-stone-900 text-amber-400'} flex items-center justify-center text-xs border border-amber-700/30">
+              <i class="fa-solid ${c.icon}"></i>
+            </div>
+            <span class="text-xs sm:text-sm font-semibold">${title}</span>
+          </div>
+          <span class="text-[11px] font-bold text-amber-400/70 bg-black/40 border border-amber-900/40 px-2 py-0.5 rounded-full">${count}</span>
+        </button>
+      `}).join('');
+    }
+
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      const arrow = document.getElementById('dropdownArrow');
+      const isClosed = menu.classList.contains('hidden');
+      if (isClosed) {
+        menu.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+
+    function selectCategory(catId) {
+      currentCategory = catId;
+      const catObj = categorias.find(c => c.id === catId);
+      if (catObj) {
+        document.getElementById('currentCatTitle').innerText = currentLang === 'es' ? catObj.nombre : (catObj.nombre_en || catObj.nombre);
+        const iconElem = document.getElementById('currentCatIcon');
+        iconElem.className = `fa-solid ${catObj.icon}`;
+      }
+      toggleDropdown();
+      initDropdown();
+      filtrarPlatos();
+    }
+
+    document.addEventListener('click', (e) => {
+      const nav = document.querySelector('nav');
+      const menu = document.getElementById('dropdownMenu');
+      const arrow = document.getElementById('dropdownArrow');
+      if (nav && !nav.contains(e.target) && menu && !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+
+      const langBtn = document.getElementById('langBtn');
+      const langMenu = document.getElementById('langMenu');
+      if (langBtn && !langBtn.contains(e.target) && langMenu && !langMenu.contains(e.target)) {
+        langMenu.classList.add('hidden');
+      }
+    });
+
+    function formatearTextoParentesis(texto) {
+      if (!texto) return '';
+      return texto.replace(/\(([^)]+)\)/g, '<span class="text-[11px] sm:text-[12px] font-normal text-amber-200/80">($1)</span>');
+    }
+
+    function renderPlatos(items) {
+      const container = document.getElementById('dishContainer');
+      const noResults = document.getElementById('noResults');
+      const contador = document.getElementById('platosContador');
+
+      const itemLabel = currentLang === 'es' ? (items.length === 1 ? 'plato' : 'platos') : (items.length === 1 ? 'dish' : 'dishes');
+      contador.innerText = `${items.length} ${itemLabel}`;
+
+      if (!items || items.length === 0) {
+        container.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+      noResults.classList.add('hidden');
+
+      let categoryBanner = '';
+      if (currentCategory === 'paellas') {
+        const txtTitle = currentLang === 'es' ? 'Platos exclusivamente por encargo' : 'Dishes upon advance order only';
+        const txtDesc = currentLang === 'es' 
+          ? 'Nuestras paellas se elaboran al momento y requieren reserva previa (Mínimo 2 personas). Por favor, consulte la disponibilidad con nuestro personal.'
+          : 'Our paellas are made to order and require advance booking (Minimum 2 people). Please check availability with our staff.';
+
+        categoryBanner = `
+          <div class="bg-gradient-to-r from-amber-950/90 via-[#2a140b] to-amber-950/90 border border-amber-500/60 rounded-2xl p-4 mb-4 flex items-start gap-3.5 shadow-lg">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div>
+              <h4 class="font-carlotas font-bold text-amber-300 text-sm">${txtTitle}</h4>
+              <p class="text-xs text-amber-100/80 mt-1 leading-relaxed font-normal">${txtDesc}</p>
+            </div>
+          </div>
+        `;
+      } else if (currentCategory === 'bocadillos' || currentCategory === 'montaditos') {
+        const txtTitle = currentLang === 'es' ? 'Crea tu montadito o bocadillo a tu gusto' : 'Create your sandwich or baguette to your liking';
+        const txtDesc = currentLang === 'es'
+          ? 'Los ingredientes extras llevarán un suplemento de <span class="font-extrabold text-amber-300 bg-amber-900/60 border border-amber-600/40 px-1.5 py-0.5 rounded">0,50 €</span> por ingrediente.'
+          : 'Extra ingredients will have a surcharge of <span class="font-extrabold text-amber-300 bg-amber-900/60 border border-amber-600/40 px-1.5 py-0.5 rounded">0.50 €</span> per ingredient.';
+
+        categoryBanner = `
+          <div class="bg-gradient-to-r from-[#24130b] via-[#2d180e] to-[#24130b] border border-amber-500/50 rounded-2xl p-4 mb-4 flex items-start gap-3.5 shadow-lg">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-600 to-amber-800 text-white flex items-center justify-center shrink-0 text-base shadow-sm">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <div>
+              <h4 class="font-carlotas font-bold text-amber-300 text-sm">${txtTitle}</h4>
+              <p class="text-xs text-amber-100/90 mt-1 leading-relaxed font-medium">${txtDesc}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      const activeAlergenosMap = currentLang === 'es' ? alergenosMapES : alergenosMapEN;
+      const allergenPrefix = currentLang === 'es' ? 'Alérgenos:' : 'Allergens:';
+
+      container.innerHTML = categoryBanner + items.map(p => {
+        const rawTitle = currentLang === 'es' ? (p.nombre || '') : (p.en || p.nombre || '');
+        const titleFormatted = formatearTextoParentesis(rawTitle);
+        const description = (currentLang === 'es' && p.desc) ? p.desc : '';
+
+        let allergensHtml = '';
+        if (p.al && Array.isArray(p.al) && p.al.length > 0) {
+          const badges = p.al
+            .filter(code => code && activeAlergenosMap[code]) // Ignora códigos inválidos o vacíos
+            .map(code => 
+              `<span class="inline-flex items-center gap-1.5 bg-[#1a0e08]/90 text-amber-300/90 border border-amber-500/30 px-2 py-0.5 rounded-md text-[10.5px] font-medium" title="${activeAlergenosMap[code]}">
+                <span class="w-4 h-4 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center text-[10px]">
+                  <i class="${alergenosIconsMap[code] || 'fa-solid fa-circle-exclamation'}"></i>
+                </span>
+                ${activeAlergenosMap[code]}
+              </span>`
+            ).join('');
+          
+          if (badges.trim().length > 0) {
+            allergensHtml = `
+              <div class="mt-2 pl-7 flex items-center gap-1.5 flex-wrap">
+                <span class="text-[10px] text-amber-400/60 uppercase font-bold tracking-wider">${allergenPrefix}</span>
+                ${badges}
+              </div>
+            `;
+          }
+        }
+
+        return `
+        <article class="relative dish-card rounded-2xl p-4 transition-all flex flex-col justify-between group">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-baseline gap-2">
+                <span class="w-5 h-5 rounded-md bg-gradient-to-br from-amber-500/25 to-amber-800/40 text-amber-300 font-extrabold text-[10px] flex items-center justify-center shrink-0 border border-amber-500/40 shadow-inner font-carlotas self-center">
+                  ${p.num || ''}
+                </span>
+                <h3 class="font-bold text-[#faf3e8] text-[14px] sm:text-[15px] leading-snug group-hover:text-amber-300 transition-colors">
+                  ${titleFormatted}
+                </h3>
+              </div>
+
+              ${description ? `<p class="text-xs text-amber-100/70 mt-1 pl-7 leading-relaxed font-normal">${description}</p>` : ''}
+              ${allergensHtml}
+            </div>
+
+            <div class="text-right shrink-0">
+              <span class="text-sm sm:text-base font-extrabold text-amber-300 bg-gradient-to-r from-amber-900/60 to-black/60 px-3 py-1.5 rounded-xl border border-amber-500/50 inline-block whitespace-nowrap shadow-md font-carlotas">
+                ${p.precio || ''}
+              </span>
+            </div>
+          </div>
+        </article>
+      `;}).join('');
+    }  
+
+    function filtrarPlatos() {
+      const filtered = platos.filter(p => p.cat === currentCategory);
+      renderPlatos(filtered);
+    }
+
+    // Sincronización única y limpia con Google Sheets
+    async function sincronizarConGoogleSheets() {
+      try {
+        const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now());
+        if (!res.ok) return;
+        const text = await res.text();
+        
+        const filas = parseCSV(text);
+        if (!filas || filas.length <= 1) return;
+
+        const platosCargados = [];
+        for (let i = 1; i < filas.length; i++) {
+          const col = filas[i];
+          if (!col || col.length < 3 || !col[2]) continue;
+
+          const numRaw = col[0] ? col[0].trim() : '';
+          const alStr = col[6] ? col[6].trim() : '';
+          const alArr = alStr ? alStr.split(/[-;, ]+/).map(x => parseInt(x)).filter(x => !isNaN(x)) : [];
+          const precioLimpio = (col[4] || '').replace(/^"|"$/g, '').trim();
+
+          platosCargados.push({
+            num: isNaN(numRaw) ? numRaw : parseInt(numRaw),
+            cat: (col[1] || '').toLowerCase().trim(),
+            nombre: (col[2] || '').trim(),
+            en: (col[3] || col[2] || '').trim(),
+            precio: precioLimpio,
+            desc: (col[5] || '').trim(),
+            al: alArr,
+            top: (col[7] || '').toUpperCase().includes('TRUE')
+          });
+        }
+
+        if (platosCargados.length > 0) {
+          platos = platosCargados;
+		  localStorage.setItem('carlotas_menu_data', JSON.stringify(platosCargados)); // Guarda el menú actualizado
+          initDropdown();
+          filtrarPlatos();
+        }
+      } catch (err) {
+        console.warn("Usando platos locales por defecto:", err);
+      }
+    }
+
+    // Inicio inmediato con respaldo y carga de Google Sheets en segundo plano
+    initDropdown();
+    filtrarPlatos();
+    sincronizarConGoogleSheets();
+  </script>
+</body>
+</html>
